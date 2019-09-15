@@ -83,6 +83,9 @@ class UserController extends Controller
         public function delete(Request $request)
         {
             $user = User::find($request->id);
+            if($user == null){
+                return response()->json(['error' => 'Id não encontrado'], 404);
+            }
             $name = $user->name;
             $user->delete();
             if(User::find($request->id) == null){
@@ -101,7 +104,7 @@ class UserController extends Controller
         {
             $request->user()->token()->revoke();
             return response()->json([
-                'message' => 'Successfully logged out'
+                'message' => 'Deslogado com sucesso'
             ], 200);
         }
 }

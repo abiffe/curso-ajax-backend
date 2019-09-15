@@ -18,10 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('login', 'API\UserController@login');
-Route::get('users', 'API\UserController@users');
 Route::post('register', 'API\UserController@register');
 Route::middleware('auth:api')->group(function(){
     Route::post('details', 'API\UserController@details');
+    Route::get('users', 'API\UserController@users');
     Route::post('logout', 'API\UserController@logout');
-    Route::post('delete', 'API\UserController@delete');
+    Route::delete('delete', 'API\UserController@delete');
 });
